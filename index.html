@@ -245,7 +245,6 @@ body { margin: 0; }
     <button role="tab" id="t-como" aria-controls="como">Como funciona</button>
     <button role="tab" id="t-hipoteses" aria-controls="hipoteses">Hipóteses</button>
     <button role="tab" id="t-resultados" aria-controls="resultados">Resultados gerais</button>
-    <button role="tab" id="t-decisoes" aria-controls="decisoes">Decisões</button>
   </nav>
 
   <!-- LINHA DE RACIOCINIO -->
@@ -253,7 +252,7 @@ body { margin: 0; }
     <div class="intro">
       <span class="eyebrow">Da qualificação ao modelo final</span>
       <h2>A linha de raciocínio</h2>
-      <p class="sub">Por que o modelo da qualificação precisou mudar, que modelo entrou no lugar, como ele foi adaptado às perguntas da dissertação e o que ele respondeu.</p>
+      <p class="sub">Por que o modelo da qualificação precisou mudar, que modelo entrou no lugar, como ele foi adaptado às perguntas da dissertação, como foi construído e o que ele respondeu.</p>
     </div>
     <div class="capitulos" id="raciocinio-corpo"></div>
   </section>
@@ -688,46 +687,6 @@ body { margin: 0; }
       </div>
     </div>
   </section>
-<!-- DECISOES -->
-  <section class="painel" id="decisoes" role="tabpanel" aria-labelledby="t-decisoes" hidden>
-    <div class="intro">
-      <span class="eyebrow">Como o modelo foi construído</span>
-      <h2>Do modelo antigo ao modelo final, passo a passo</h2>
-      <p class="sub">Cada passo resolveu um problema deixado pelo anterior.</p>
-    </div>
-    <div class="card">
-      <ol class="tempo">
-        <li><div><h3>Ponto de partida: a regressão da qualificação</h3>
-          <p>A persistência era a fração dos anos com captura, analisada por uma regressão em cada área. O problema: um ano sem captura contava como ausência, e o que facilita a captura (como a abundância) aparecia como persistência. Daí a troca por um modelo de ocupação dinâmica, que separa presença de captura.</p></div></li>
-        <li><div><h3>Dados organizados e corrigidos</h3>
-          <p>Três áreas (a Natural só com o rótulo exato "Natural"), 148 espécies com atributos e nicho, 30 anos (1990–2024). Cada visita é uma campanha × vistoria. Três erros da planilha foram corrigidos: capturas sem vistoria, esforço ausente contado como zero e esforço somado por peixe em vez de por rede. O esforço que falta passou a ser estimado pelo modelo.</p></div></li>
-        <li><div><h3>As hipóteses viram partes do modelo</h3>
-          <p>Cada preditor da qualificação entrou na persistência (φ) e na colonização (γ). A abundância entrou também na captura (p), para separar o efeito demográfico do efeito de captura (H3). Quatro preditores (abundância, paisagem, posição e amplitude de nicho) ganharam um coeficiente por área, para testar se o peso deles depende do local.</p></div></li>
-        <li><div><h3>Captura avaliada em cada visita</h3>
-          <p>Com uma observação por ano, o modelo não distinguia "ausente" de "presente e não capturada". Com as visitas repetidas no mesmo ano, passou a distinguir.</p>
-          <p class="efeito">Efeito: espécies persistentes na Natural de 80% para 63%; o efeito da abundância na persistência caiu de 0,64 para 0,20.</p></div></li>
-        <li><div><h3>Anos de pesca melhores e piores</h3>
-          <p>As capturas variavam entre anos mais do que o modelo previa. Entrou um efeito de ano na captura e a cheia (anomalia de profundidade).</p></div></li>
-        <li><div><h3>Diferenças próprias de cada espécie</h3>
-          <p>Cada espécie ganhou um efeito próprio em φ, γ e p, para o que os atributos não explicam (inclusive a semelhança filogenética). A previsão melhorou, e os efeitos de nicho se mantiveram.</p></div></li>
-        <li><div><h3>Paisagem corrigida pela captura</h3>
-          <p>As três áreas de cada espécie passaram a ser modeladas juntas, e a paisagem passou a ser a presença estimada nas outras áreas, e não as capturas.</p>
-          <p class="efeito">Efeito: apareceu o efeito resgate na colonização (de 0,17 para cerca de 0,7).</p></div></li>
-        <li><div><h3>Verificações do modelo final</h3>
-          <p>Os dados simulados pelo modelo reproduzem os reais (capturas por visita, anos com registro e trocas de espécies entre anos). As conclusões se mantêm com cortes de persistência de 30% a 70%, sem as espécies raras e com priors duas vezes mais largos. Na validação cruzada, ajustando o modelo sem grupos de espécies e prevendo as capturas delas, a paisagem estimada previu melhor que a paisagem pelas capturas.</p></div></li>
-      </ol>
-    </div>
-    <div class="card">
-      <h3 style="margin-bottom:4px">Como os efeitos principais mudaram ao longo dos passos</h3>
-      <p class="small muted" style="margin-bottom:10px">Cada ponto é uma versão do modelo: captura anual (antes do passo 4), por visita (passo 4), com efeito de ano (5), com efeito de espécie (6) e final (7). O efeito da abundância na persistência e o da estratégia periódica diminuíram, a posição de nicho ficou estável e o efeito da paisagem na colonização só apareceu no passo 7.</p>
-      <div class="chart" id="evo-chart"></div>
-    </div>
-    <div class="card leitura">
-      <h3>O que ficou de fora, e por quê</h3>
-      <p><strong>Filogenia (PGLS):</strong> o efeito próprio de cada espécie (passo 6) já absorve a semelhança entre espécies que os atributos não explicam, inclusive a filogenética.</p>
-      <p><strong>Codificação fuzzy dos atributos:</strong> a tabela disponível tem uma categoria por espécie; a migração virou um escore (de sedentária a longa distância) e a reprodução, periódica × demais.</p>
-    </div>
-  </section>
 
   </div>
 <div id="dica" hidden></div>
@@ -925,8 +884,29 @@ body { margin: 0; }
           <li>Para H3, a abundância entra em <i>φ</i> e <i>γ</i> (efeito demográfico) e também em <i>p</i> (efeito de captura), o que permite separar as duas coisas. A segunda parte de H3 é testada com um coeficiente por área e um parâmetro, <i>τ</i>, que mede o quanto as áreas diferem.</li>
           <li>A ocupação na paisagem passa a ser o número de outras áreas em que a espécie está, com as três áreas modeladas juntas, o que permite testar o efeito resgate sem a interferência da captura.</li>
         </ul>
+        <p>Ficaram de fora a filogenia (PGLS), porque o efeito próprio de cada espécie já absorve a semelhança entre espécies que os atributos não explicam, inclusive a filogenética, e a codificação fuzzy dos atributos, porque a tabela disponível tem uma categoria por espécie: a migração virou um escore (de sedentária a longa distância) e a reprodução, periódica × demais.</p>
         <p>As equações completas estão em <a href="#como" data-aba="como">Como funciona</a>.</p>`),
-      cap(7, "A revisão como guia", `
+      cap(7, "Como o modelo foi construído", `
+        <p>O modelo final foi montado em etapas, e cada uma resolveu um problema deixado pela anterior.</p>
+        <ol class="tempo">
+          <li><div><h3>Dados organizados e corrigidos</h3>
+            <p>Três áreas (a Natural só com o rótulo exato "Natural"), 148 espécies com atributos e nicho, 30 anos (1990–2024). Cada visita é uma campanha × vistoria. Três erros da planilha foram corrigidos: capturas sem vistoria, esforço ausente contado como zero e esforço somado por peixe em vez de por rede. O esforço que falta passou a ser estimado pelo modelo.</p></div></li>
+          <li><div><h3>Captura avaliada em cada visita</h3>
+            <p>Com uma observação por ano, o modelo não distinguia "ausente" de "presente e não capturada". Com as visitas repetidas no mesmo ano, passou a distinguir.</p>
+            <p class="efeito">Efeito: espécies persistentes na Natural de 80% para 63%; o efeito da abundância na persistência caiu de 0,64 para 0,20.</p></div></li>
+          <li><div><h3>Anos de pesca melhores e piores</h3>
+            <p>As capturas variavam entre anos mais do que o modelo previa. Entrou um efeito de ano na captura e a cheia (anomalia de profundidade).</p></div></li>
+          <li><div><h3>Diferenças próprias de cada espécie</h3>
+            <p>Cada espécie ganhou um efeito próprio em <i>φ</i>, <i>γ</i> e <i>p</i>, para o que os atributos não explicam. A previsão melhorou, e os efeitos de nicho se mantiveram.</p></div></li>
+          <li><div><h3>Paisagem corrigida pela captura</h3>
+            <p>As três áreas de cada espécie passaram a ser modeladas juntas, e a paisagem passou a ser a presença estimada nas outras áreas, e não as capturas.</p>
+            <p class="efeito">Efeito: apareceu o efeito resgate na colonização (de 0,17 para cerca de 0,7).</p></div></li>
+          <li><div><h3>Verificações do modelo final</h3>
+            <p>Os dados simulados pelo modelo reproduzem os reais (capturas por visita, anos com registro e trocas de espécies entre anos). As conclusões se mantêm com cortes de persistência de 30% a 70%, sem as espécies raras e com priors duas vezes mais largos. Na validação cruzada, ajustando o modelo sem grupos de espécies e prevendo as capturas delas, a paisagem estimada previu melhor que a paisagem pelas capturas.</p></div></li>
+        </ol>
+        <p class="small muted">O gráfico mostra como os efeitos principais mudaram a cada etapa. Cada ponto é uma versão do modelo: captura anual (antes da etapa 2), por visita (etapa 2), com efeito de ano (3), com efeito de espécie (4) e final (5). O efeito da abundância na persistência e o da estratégia periódica diminuíram, a posição de nicho ficou estável e o efeito da paisagem na colonização só apareceu na etapa 5.</p>
+        <div class="chart" id="evo-chart"></div>`),
+      cap(8, "A revisão como guia", `
         <p>Algumas recomendações da revisão orientaram as escolhas do modelo.</p>
         <div class="scroll-x"><table class="quadro">
           <thead><tr><th>Recomendação (Kelleher et al. 2025)</th><th>Neste trabalho</th></tr></thead><tbody>
@@ -940,7 +920,7 @@ body { margin: 0; }
           </tbody></table></div>
         <p>O trabalho também cobre lacunas apontadas na revisão: só 11 dos 92 estudos revisados usaram modelos explicitamente multiespécies, poucos tratavam de organismos aquáticos, e as séries tinham em geral 8 anos, contra 30 aqui. Duas limitações frequentes na revisão também valem aqui: a ocupação do primeiro ano não tem covariáveis, e todas as relações são lineares na escala logit.</p>
         <p class="citacao">Kelleher, S., Guillera-Arroita, G., Elith, J. &amp; Briscoe, N. J. (2025). Twenty years of dynamic occupancy models: a review of applications and look to the future. Ecography, e07757.</p>`),
-      cap(8, "Resultados", `
+      cap(9, "Resultados", `
         <ul>
           <li>H1 não foi suportada. Rejeito e Natural têm a mesma proporção de persistentes (${pct(h1m("comum", "Natural").media)} e ${pct(h1m("comum", "Rejeito").media)} na janela comum, anos que as três áreas foram amostradas juntas). O Plantio recebe menos espécies, 80 de 148, e as que chegam persistem de forma parecida ou um pouco menos (${pct(h1m("comum", "Plantio").media)}).</li>
           <li>H2 foi suportada em parte. A amplitude de nicho aumenta a persistência e a colonização, o tamanho tem um efeito fraco na colonização, e migração e estratégia reprodutiva não tiveram efeito.</li>
@@ -1213,7 +1193,7 @@ body { margin: 0; }
       });
     });
   };
-  RENDER.decisoes = function () {
+  RENDER.raciocinio = function () {
     const cont = document.getElementById("evo-chart");
     const E = D.evolucao, n = E.versoes.length;
     const W = larg(cont), cols = W < 560 ? 1 : 2, gw = (W - (cols - 1) * 20) / cols, gh = 120;
@@ -1432,7 +1412,7 @@ body { margin: 0; }
   };
 
   // --- inicio: aba do link (#h1 etc.), senao a ultima aberta, senao a visao geral
-  const ANTIGAS = { h1: ["hipoteses", "h1"], efeitos: ["hipoteses", "h3"], qualificacao: ["hipoteses", "visao"], visao: ["hipoteses", "visao"], trajetoria: ["resultados"], especies: ["resultados"] };
+  const ANTIGAS = { h1: ["hipoteses", "h1"], efeitos: ["hipoteses", "h3"], qualificacao: ["hipoteses", "visao"], decisoes: ["raciocinio"], visao: ["hipoteses", "visao"], trajetoria: ["resultados"], especies: ["resultados"] };
   const valida = (id) => tabs.some((t) => t.getAttribute("aria-controls") === id);
   let inicial = location.hash.slice(1);
   if (!valida(inicial) && !ANTIGAS[inicial]) {
