@@ -267,8 +267,8 @@ body { margin: 0; }
       <h3>Esquema do modelo</h3>
       <figure style="margin:0;display:grid;gap:10px">
         <div class="scroll-x diagrama">
-        <svg viewBox="0 0 700 410" style="min-width:560px;max-width:760px" role="img" aria-labelledby="esq-tit">
-          <title id="esq-tit">Em cada área, o estado escondido z passa de um ano para o seguinte com φ (se presente) ou γ (se ausente). φ e γ dependem dos fatores da espécie e da área e de quantas outras áreas estão ocupadas no ano anterior. Em cada visita, uma espécie presente é capturada com chance p.</title>
+        <svg viewBox="0 0 700 472" style="min-width:560px;max-width:760px" role="img" aria-labelledby="esq-tit">
+          <title id="esq-tit">Em cada área, o estado escondido z passa de um ano para o seguinte com φ (se presente) ou γ (se ausente). φ e γ dependem dos fatores da espécie e da área e de quantas outras áreas estão ocupadas no ano anterior. Em cada visita, uma espécie presente é capturada com chance p, que depende do esforço, da abundância, da cheia, do ano e da espécie.</title>
           <defs>
             <marker id="esq-seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" style="fill:var(--ink-2)"></path></marker>
             <marker id="esq-seta-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" style="fill:var(--muted)"></path></marker>
@@ -284,7 +284,10 @@ body { margin: 0; }
           <line x1="247" y1="349" x2="389" y2="254" style="stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:5 4" marker-end="url(#esq-seta)"></line>
           <circle cx="395" cy="250" r="4" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.5"></circle>
           <text x="330" y="240" text-anchor="middle" style="fill:var(--ink);font-size:12px">paisagem</text>
-          <text x="200" y="290" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
+          <line x1="230" y1="420" x2="230" y2="408" style="stroke:var(--ink-2);stroke-width:1.4" marker-end="url(#esq-seta)"></line>
+          <rect x="90" y="420" width="280" height="46" rx="8" style="fill:var(--surface);stroke:var(--axis);stroke-width:1.4"></rect>
+          <text x="230" y="439" text-anchor="middle" style="fill:var(--ink);font-size:12.5px;font-weight:600">Fatores da captura (p, em cada visita)</text>
+          <text x="230" y="456" text-anchor="middle" style="fill:var(--ink-2);font-size:11.5px">esforço · abundância · cheia · ano · espécie</text>
           <text x="16" y="138" style="fill:var(--ink);font-size:14px;font-weight:600">Rejeito</text>
           <text x="16" y="155" style="fill:var(--muted);font-size:11.5px">regeneração natural</text>
           <line x1="160" y1="140" x2="204" y2="140" style="stroke:var(--muted);stroke-width:1.4" marker-end="url(#esq-seta-m)"></line>
@@ -297,8 +300,8 @@ body { margin: 0; }
           <text x="230" y="145" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
           <circle cx="560" cy="140" r="20" style="fill:var(--surface);stroke:var(--a-rej);stroke-width:2.4"></circle>
           <text x="560" y="145" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
-          <line x1="230" y1="161" x2="230" y2="168" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="208" y="170" width="12" height="12" rx="2" style="fill:var(--a-rej)"></rect><rect x="224" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="240" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect>
-          <line x1="560" y1="161" x2="560" y2="168" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="538" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="554" y="170" width="12" height="12" rx="2" style="fill:var(--a-rej)"></rect><rect x="570" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect>
+          <line x1="230" y1="161" x2="230" y2="168" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="216" y="170" width="12" height="12" rx="2" style="fill:var(--a-rej)"></rect><rect x="232" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><text x="210" y="180" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
+          <line x1="560" y1="161" x2="560" y2="168" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="546" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="562" y="170" width="12" height="12" rx="2" style="fill:var(--a-rej)"></rect><text x="540" y="180" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <text x="16" y="248" style="fill:var(--ink);font-size:14px;font-weight:600">Natural</text>
           <text x="16" y="265" style="fill:var(--muted);font-size:11.5px">não impactada</text>
           <line x1="160" y1="250" x2="204" y2="250" style="stroke:var(--muted);stroke-width:1.4" marker-end="url(#esq-seta-m)"></line>
@@ -311,8 +314,8 @@ body { margin: 0; }
           <text x="230" y="255" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
           <circle cx="560" cy="250" r="20" style="fill:var(--surface);stroke:var(--a-nat);stroke-width:2.4"></circle>
           <text x="560" y="255" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
-          <line x1="230" y1="271" x2="230" y2="278" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="208" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="224" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="240" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect>
-          <line x1="560" y1="271" x2="560" y2="278" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="538" y="280" width="12" height="12" rx="2" style="fill:var(--a-nat)"></rect><rect x="554" y="280" width="12" height="12" rx="2" style="fill:var(--a-nat)"></rect><rect x="570" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect>
+          <line x1="230" y1="271" x2="230" y2="278" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="216" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="232" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><text x="210" y="290" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
+          <line x1="560" y1="271" x2="560" y2="278" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="546" y="280" width="12" height="12" rx="2" style="fill:var(--a-nat)"></rect><rect x="562" y="280" width="12" height="12" rx="2" style="fill:var(--a-nat)"></rect><text x="540" y="290" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <text x="16" y="358" style="fill:var(--ink);font-size:14px;font-weight:600">Plantio</text>
           <text x="16" y="375" style="fill:var(--muted);font-size:11.5px">regeneração facilitada</text>
           <line x1="160" y1="360" x2="204" y2="360" style="stroke:var(--muted);stroke-width:1.4" marker-end="url(#esq-seta-m)"></line>
@@ -325,20 +328,20 @@ body { margin: 0; }
           <text x="230" y="365" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
           <circle cx="560" cy="360" r="20" style="fill:var(--surface);stroke:var(--a-pla);stroke-width:2.4"></circle>
           <text x="560" y="365" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
-          <line x1="230" y1="381" x2="230" y2="388" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="208" y="390" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="224" y="390" width="12" height="12" rx="2" style="fill:var(--a-pla)"></rect><rect x="240" y="390" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect>
+          <line x1="230" y1="381" x2="230" y2="388" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="216" y="390" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="232" y="390" width="12" height="12" rx="2" style="fill:var(--a-pla)"></rect><text x="210" y="400" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <text x="560" y="400" text-anchor="middle" style="fill:var(--muted);font-size:11px">sem coleta</text>
         </svg>
         </div>
         <figcaption class="legend">
           <span><svg width="26" height="12" aria-hidden="true"><line x1="1" y1="6" x2="25" y2="6" style="stroke:var(--ink-2);stroke-width:1.8"></line></svg><i>φ</i>&nbsp;fica, se estava · <i>γ</i>&nbsp;chega, se não estava</span>
           <span><svg width="26" height="12" aria-hidden="true"><line x1="1" y1="6" x2="25" y2="6" style="stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:5 4"></line></svg>paisagem: outras áreas ocupadas no ano t (desenhada só para a Natural; vale para as três)</span>
-          <span><svg width="30" height="12" aria-hidden="true"><rect x="1" y="0" width="12" height="12" rx="2" style="fill:var(--ink-2)"></rect><rect x="17" y="0.6" width="11" height="11" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect></svg>visitas do ano: capturada / não capturada</span>
+          <span><svg width="30" height="12" aria-hidden="true"><rect x="1" y="0" width="12" height="12" rx="2" style="fill:var(--ink-2)"></rect><rect x="17" y="0.6" width="11" height="11" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect></svg>visitas do ano (duas no exemplo): capturada / não capturada, cada uma com chance <i>p</i></span>
         </figcaption>
       </figure>
       <p>Cada espécie, em cada uma das três áreas, está presente ou ausente a cada ano (<i>z</i>). Esse estado não é visto diretamente.</p>
       <p>De um ano para o seguinte, uma espécie presente fica com chance φ e uma ausente chega com chance γ. φ e γ dependem dos fatores da espécie e da área, cada um com seu coeficiente β; é aí que estão as hipóteses.</p>
       <p>φ e γ de uma área também dependem da paisagem: quantas das outras duas áreas a espécie ocupava no ano anterior (0, 1 ou 2). Como a presença nas outras áreas também é escondida, o modelo acompanha as três áreas juntas (as 8 combinações da equação 6, mais abaixo).</p>
-      <p>O que vemos são as capturas. Em cada visita (vistoria), uma espécie presente é capturada com chance p, que depende do esforço, da abundância, da cheia e do ano; uma espécie ausente nunca é capturada. Num ano sem coleta não há visitas, e o modelo passa por ele só pela dinâmica (Plantio, no ano t + 1).</p>
+      <p>O que vemos são as capturas. Em cada visita (vistoria), uma espécie presente é capturada com chance p, que depende do esforço, da abundância, da cheia, do ano e da própria espécie; uma espécie ausente nunca é capturada. Num ano sem coleta não há visitas, e o modelo passa por ele só pela dinâmica (Plantio, no ano t + 1).</p>
       <p>A persistência temporal é então a fração dos anos amostrados em que a espécie está presente. A diferença para a qualificação é que "presente" passa a ser estimado, e não lido direto das capturas.</p>
     </div>
 
