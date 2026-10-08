@@ -240,7 +240,6 @@ body { margin: 0; }
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button role="tab" id="t-raciocinio" aria-controls="raciocinio">Linha de raciocínio</button>
     <button role="tab" id="t-como" aria-controls="como">Como funciona</button>
-    <button role="tab" id="t-visao" aria-controls="visao">Visão geral</button>
     <button role="tab" id="t-hipoteses" aria-controls="hipoteses">Hipóteses</button>
     <button role="tab" id="t-resultados" aria-controls="resultados">Resultados gerais</button>
     <button role="tab" id="t-modelo" aria-controls="modelo">Diagnóstico</button>
@@ -494,30 +493,6 @@ body { margin: 0; }
     </div>
   </section>
 
-  <!-- VISAO GERAL -->
-  <section class="painel" id="visao" role="tabpanel" aria-labelledby="t-visao" hidden>
-    <div class="intro">
-      <span class="eyebrow">Resultados em resumo</span>
-      <h2>O que o modelo diz sobre as hipóteses</h2>
-      <p class="sub">Uma resposta curta por hipótese. Os gráficos e os números de cada uma estão na aba Hipóteses.</p>
-    </div>
-    <div class="hipoteses" id="hip-cards"></div>
-    <div class="intro" style="margin-top:10px">
-      <span class="eyebrow">Modelo antigo × modelo novo</span>
-      <h2>O que mudou em relação ao modelo antigo</h2>
-      <p class="sub">Em cada área, a primeira coluna é o modelo antigo (a regressão da qualificação, refeita com os dados atuais); as outras duas são o modelo novo, para persistência (φ) e colonização (γ).</p>
-    </div>
-    <p class="ler"><span><b>Como ler:</b> cada linha é um fator. Azul = efeito positivo, vermelho = negativo; quanto mais escura, mais forte a evidência (na regressão, sinal de t × (1 − p); no modelo, 2·P(β &gt; 0) − 1). Compare a coluna "Antigo" com φ e γ da mesma área: onde a cor some no modelo novo (abundância), o efeito antigo vinha da facilidade de captura; onde ela aparece (posição de nicho no Plantio, paisagem na colonização), o modelo novo vê o que o antigo não via. Passe o mouse para ver os números.</span></p>
-    <div class="card">
-      <div class="legend" id="q-legenda" style="margin-bottom:10px"></div>
-      <div class="chart scroll-x" id="q-chart"></div>
-    </div>
-    <div class="card leitura">
-      <h3>Onde os resultados divergem, e por quê</h3>
-      <div class="scroll-x"><table class="quadro" id="divergencias"></table></div>
-    </div>
-  </section>
-
   <!-- HIPOTESES -->
   <section class="painel" id="hipoteses" role="tabpanel" aria-labelledby="t-hipoteses" hidden>
     <div class="intro">
@@ -528,6 +503,7 @@ body { margin: 0; }
       <button data-v="h1" aria-pressed="true">H1 · Áreas</button>
       <button data-v="h2" aria-pressed="false">H2 · Atributos</button>
       <button data-v="h3" aria-pressed="false">H3 · Abundância e local</button>
+      <button data-v="visao" aria-pressed="false">Visão geral</button>
     </div>
 
     <div class="hip-vista" id="hv-h1">
@@ -597,6 +573,29 @@ body { margin: 0; }
         <p class="small muted">Coeficiente médio de cada preditor com efeito por área. Em negrito, os que têm intervalo de 90% fora do zero. τ mede o quanto as áreas se afastam do efeito comum: perto de zero, as três áreas seriam iguais.</p>
         <div class="scroll-x"><table class="dados" id="h3-areas"></table></div>
         <p id="h3-areas-leitura"></p>
+      </div>
+    </div>
+
+    <div class="hip-vista" id="hv-visao" hidden>
+      <div class="intro">
+        <span class="eyebrow">Resultados em resumo</span>
+        <h3>O que o modelo diz sobre as hipóteses</h3>
+        <p class="sub">Uma resposta curta por hipótese. Os gráficos e os números de cada uma estão nos botões H1, H2 e H3.</p>
+      </div>
+      <div class="hipoteses" id="hip-cards"></div>
+      <div class="intro" style="margin-top:10px">
+        <span class="eyebrow">Modelo antigo × modelo novo</span>
+        <h3>O que mudou em relação ao modelo antigo</h3>
+        <p class="sub">Em cada área, a primeira coluna é o modelo antigo (a regressão da qualificação, refeita com os dados atuais); as outras duas são o modelo novo, para persistência (φ) e colonização (γ).</p>
+      </div>
+      <p class="ler"><span><b>Como ler:</b> cada linha é um fator. Azul = efeito positivo, vermelho = negativo; quanto mais escura, mais forte a evidência (na regressão, sinal de t × (1 − p); no modelo, 2·P(β &gt; 0) − 1). Compare a coluna "Antigo" com φ e γ da mesma área: onde a cor some no modelo novo (abundância), o efeito antigo vinha da facilidade de captura; onde ela aparece (posição de nicho no Plantio, paisagem na colonização), o modelo novo vê o que o antigo não via. Passe o mouse para ver os números.</span></p>
+      <div class="card">
+        <div class="legend" id="q-legenda" style="margin-bottom:10px"></div>
+        <div class="chart scroll-x" id="q-chart"></div>
+      </div>
+      <div class="card leitura">
+        <h3>Onde os resultados divergem, e por quê</h3>
+        <div class="scroll-x"><table class="quadro" id="divergencias"></table></div>
       </div>
     </div>
   </section>
@@ -714,7 +713,7 @@ body { margin: 0; }
         <li><div><h3>Efeito próprio de cada espécie</h3>
           <p>Com os erros corrigidos, o efeito aleatório de espécie em φ e γ passou a melhorar claramente a previsão (LOO, 4 erros-padrão). Os efeitos de nicho continuaram firmes com ele.</p></div></li>
         <li><div><h3>Comparação com o modelo antigo</h3>
-          <p>A regressão da qualificação foi refeita com os dados atuais e posta lado a lado com o modelo novo (aba Visão geral).</p></div></li>
+          <p>A regressão da qualificação foi refeita com os dados atuais e posta lado a lado com o modelo novo (aba Hipóteses, Visão geral).</p></div></li>
         <li><div><h3>Testes de robustez</h3>
           <p>Corte de persistência de 30% a 70% e sem corte; sem as espécies raras (≤ 2 indivíduos); priors duas vezes mais largos. As conclusões se mantêm; só a magnitude da posição de nicho diminui sem as raras.</p></div></li>
         <li><div><h3>Ocupação na paisagem corrigida pela captura</h3>
@@ -964,7 +963,7 @@ body { margin: 0; }
           <li>H3 não foi suportada. A abundância afeta a captura (${nf(ultimo("abund_p"))}) e não a persistência (${nf(ultimo("abund_phi"))}). O efeito mais forte é o da posição de nicho (${nf(ultimo("nichopos_phi"))} em <i>φ</i>): espécies de nicho marginal persistem bem menos nas três áreas. A importância dos preditores muda entre as áreas principalmente na colonização.</li>
           <li>Quanto mais áreas a espécie ocupa, maior a chance de ela recolonizar as demais (${nf(ultimo("viz_gamma"))} em <i>γ</i>; ${nf(vizS.media)} na Natural e ${nf(vizR.media)} no Rejeito). Esse efeito só aparece com a presença nas outras áreas corrigida pela captura.</li>
         </ul>
-        <p>Os efeitos que dependiam da facilidade de captura, como a abundância e a paisagem calculada pelas capturas, perderam força. Os efeitos ligados ao nicho das espécies e à conexão entre as áreas ficaram mais claros. Os detalhes estão em <a href="#hipoteses" data-aba="hipoteses" data-hip="h1">Hipóteses</a> e a comparação com o modelo antigo, em <a href="#visao" data-aba="visao">Visão geral</a>.</p>`),
+        <p>Os efeitos que dependiam da facilidade de captura, como a abundância e a paisagem calculada pelas capturas, perderam força. Os efeitos ligados ao nicho das espécies e à conexão entre as áreas ficaram mais claros. Os detalhes estão em <a href="#hipoteses" data-aba="hipoteses" data-hip="h1">Hipóteses</a> e a comparação com o modelo antigo, em <a href="#hipoteses" data-aba="hipoteses" data-hip="visao">Hipóteses · Visão geral</a>.</p>`),
     ].join("");
   })();
 
@@ -1110,7 +1109,7 @@ body { margin: 0; }
   function verHip(v) {
     hipV.atual = v;
     document.querySelectorAll("#hip-sel button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === v));
-    ["h1", "h2", "h3"].forEach((id) => { document.getElementById("hv-" + id).hidden = id !== v; });
+    ["h1", "h2", "h3", "visao"].forEach((id) => { document.getElementById("hv-" + id).hidden = id !== v; });
     if (!document.getElementById("hipoteses").hidden) RENDER.hipoteses();
   }
   RENDER.hipoteses = () => RENDER[hipV.atual]();
@@ -1458,7 +1457,7 @@ body { margin: 0; }
   };
 
   // --- inicio: aba do link (#h1 etc.), senao a ultima aberta, senao a visao geral
-  const ANTIGAS = { h1: ["hipoteses", "h1"], efeitos: ["hipoteses", "h3"], qualificacao: ["visao"], trajetoria: ["resultados"], especies: ["resultados"] };
+  const ANTIGAS = { h1: ["hipoteses", "h1"], efeitos: ["hipoteses", "h3"], qualificacao: ["hipoteses", "visao"], visao: ["hipoteses", "visao"], trajetoria: ["resultados"], especies: ["resultados"] };
   const valida = (id) => tabs.some((t) => t.getAttribute("aria-controls") === id);
   let inicial = location.hash.slice(1);
   if (!valida(inicial) && !ANTIGAS[inicial]) {
