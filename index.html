@@ -368,7 +368,7 @@ body { margin: 0; }
       <h3 style="margin-bottom:4px">Do dado ao resultado, em cinco passos</h3>
       <ol class="tempo">
         <li><div><h3>As capturas viram uns e zeros</h3>
-          <p>Para cada espécie, área, ano e visita (campanha × vistoria): 1 se a espécie caiu na rede, 0 se não caiu. Anos sem coleta ficam em branco, não como zero.</p></div></li>
+          <p>Para cada espécie, área, ano e visita (campanha × área × vistoria): 1 se a espécie caiu na rede, 0 se não caiu. Anos sem coleta ficam em branco, não como zero.</p></div></li>
         <li><div><h3>O modelo aprende a chance de captura (p)</h3>
           <p>Quando uma espécie aparece em uma de duas visitas do mesmo ano, ela estava lá na outra visita e escapou. Com milhares de casos assim, o modelo mede com que frequência uma espécie presente escapa, e como isso muda com o esforço, a abundância e o ano.</p></div></li>
         <li><div><h3>O modelo aprende a chance de persistir e de colonizar (φ e γ)</h3>
@@ -748,7 +748,7 @@ body { margin: 0; }
   const anos = D.anos;
   document.getElementById("stats").innerHTML =
     `<span><b>${D.especies.length}</b> espécies</span><span><b>3</b> áreas</span>` +
-    `<span><b>${anos.length}</b> anos com coleta (${anos[0]}–${anos[anos.length - 1]})</span><span><b>${D.n_visitas}</b> visitas</span>`;
+    `<span><b>${anos.length}</b> anos com coleta (${anos[0]}–${anos[anos.length - 1]})</span>`;
 
   // =========================================================================
   // ABAS
@@ -878,7 +878,7 @@ body { margin: 0; }
       cap(4, "Modelos de ocupação dinâmica", `
         <p>Os modelos de ocupação dinâmica foram criados para esse tipo de problema (MacKenzie et al. 2003). Kelleher et al. (2025) revisaram 20 anos de aplicações desses modelos, que acompanham a ocupação ao longo do tempo levando em conta a detecção imperfeita. Eles têm duas partes: uma ecológica, em que a espécie está ou não está na área e muda de estado entre os anos, e uma de observação, em que, estando presente, ela é ou não registrada.</p>
         <div class="eq"><span class="t"><i>z</i><sub>1</sub> ~ Bernoulli(<i>ψ</i>)</span><span class="t">; &nbsp;<i>z</i><sub>t</sub> ~ Bernoulli( <i>z</i><sub>t−1</sub>(1 − <i>ε</i>) + (1 − <i>z</i><sub>t−1</sub>) <i>γ</i> )</span><span class="t">; &nbsp;<i>y</i> ~ Bernoulli(<i>z</i> · <i>p</i>)</span></div>
-        <p><i>ψ</i> é a ocupação no primeiro ano, <i>ε</i> a extinção local (a espécie estava e deixa de estar), <i>γ</i> a colonização e <i>p</i> a detecção. No Lago Batata, o ano é a ocasião primária, a visita (campanha × vistoria) é a ocasião secundária e a área é o sítio. São as visitas repetidas dentro do ano que permitem estimar <i>p</i>.</p>
+        <p><i>ψ</i> é a ocupação no primeiro ano, <i>ε</i> a extinção local (a espécie estava e deixa de estar), <i>γ</i> a colonização e <i>p</i> a detecção. No Lago Batata, o ano é a ocasião primária, a visita (campanha × área × vistoria) é a ocasião secundária e a área é o sítio. São as visitas repetidas dentro do ano que permitem estimar <i>p</i>.</p>
         <p>O modelo supõe que, dentro de um ano, a espécie está ou não está na área durante todas as visitas; aqui, ocupação deve ser lida como uso da área naquele ano. Supõe também que não há falsos positivos e que os sítios são independentes, o que deixamos de lado ao ligar as três áreas.</p>`),
       cap(5, "De extinção para persistência", `
         <p>Como a dissertação trata de persistência, escrevi o modelo com <i>φ</i> = 1 − <i>ε</i>, a probabilidade de a espécie continuar na área de um ano para o outro. O modelo é o mesmo, e um coeficiente positivo em <i>φ</i> passa a significar que o fator ajuda a espécie a persistir.</p>
@@ -899,8 +899,8 @@ body { margin: 0; }
       cap(7, "Como o modelo foi construído", `
         <p>O modelo final foi montado em etapas, e cada uma resolveu um problema deixado pela anterior.</p>
         <ol class="tempo">
-          <li><div><h3>Dados organizados e corrigidos</h3>
-            <p>Três áreas (a Natural só com o rótulo exato "Natural"), 148 espécies com atributos e nicho, 30 anos (1990–2024). Cada visita é uma campanha × vistoria. Três erros da planilha foram corrigidos: capturas sem vistoria, esforço ausente contado como zero e esforço somado por peixe em vez de por rede. O esforço que falta passou a ser estimado pelo modelo.</p></div></li>
+          <li><div><h3>Dados organizados</h3>
+            <p>Três áreas, 148 espécies com atributos e nicho, 30 anos (1990–2024). Cada visita é uma campanha × área × vistoria. O esforço ausente foi estimado pelo modelo.</p></div></li>
           <li><div><h3>Captura avaliada em cada visita</h3>
             <p>Com uma observação por ano, o modelo não distinguia "ausente" de "presente e não capturada". Com as visitas repetidas no mesmo ano, passou a distinguir.</p>
             <p class="efeito">Efeito: espécies persistentes na Natural de 80% para 63%; o efeito da abundância na persistência caiu de 0,64 para 0,20.</p></div></li>
