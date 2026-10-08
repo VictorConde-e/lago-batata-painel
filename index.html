@@ -223,6 +223,9 @@ dl.glossario dd { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
 .sim-ctl b { min-width: 2.6em; text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
 .regua td:first-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bloco-res { display: grid; gap: 22px; }
+.tr-info { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 22px; align-items: center;
+  position: sticky; top: 54px; z-index: 3; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); }
+@media (max-width: 560px) { .tr-info { grid-template-columns: 1fr; } }
 .bloco-res + .bloco-res { border-top: 1px solid var(--line); padding-top: 26px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 body { margin: 0; }
@@ -242,7 +245,6 @@ body { margin: 0; }
     <button role="tab" id="t-como" aria-controls="como">Como funciona</button>
     <button role="tab" id="t-hipoteses" aria-controls="hipoteses">Hipóteses</button>
     <button role="tab" id="t-resultados" aria-controls="resultados">Resultados gerais</button>
-    <button role="tab" id="t-modelo" aria-controls="modelo">Diagnóstico</button>
     <button role="tab" id="t-decisoes" aria-controls="decisoes">Decisões</button>
   </nav>
 
@@ -606,13 +608,11 @@ body { margin: 0; }
         <span class="eyebrow">Resultados gerais · 30 anos</span>
         <h2>Quantas espécies ocupam cada área, ano a ano</h2>
       </div>
-      <p class="ler"><span><b>Como ler:</b> a linha colorida é a fração das espécies registradas na área que, pelo modelo, estavam presentes naquele ano (P(ocupada) ≥ 50%; faixa = intervalo de 90%). Os círculos são a fração que a rede de fato capturou no ano. A distância entre a linha e os círculos é o que a captura imperfeita esconde. Nas faixas hachuradas não houve coleta e a linha é só previsão do modelo. Arraste o ano, passe o mouse ou aperte Tocar.</span></p>
-      <div class="controls">
-      <button class="btn" id="tr-play" type="button">▶ Tocar</button>
-      <label class="ctl" for="tr-ano" style="flex:1;min-width:200px">Ano <input type="range" id="tr-ano" min="0" max="29" step="1" value="29" style="flex:1"></label>
-      <span class="ano-grande" id="tr-ano-v"></span>
-    </div>
-    <div class="card readout" id="tr-readout"></div>
+      <p class="ler"><span><b>Como ler:</b> a linha colorida é a fração das espécies registradas na área que, pelo modelo, estavam presentes naquele ano (P(ocupada) ≥ 50%; faixa = intervalo de 90%). Os círculos são a fração que a rede de fato capturou no ano. A distância entre a linha e os círculos é o que a captura imperfeita esconde. Nas faixas hachuradas não houve coleta e a linha é só previsão do modelo. Passe o mouse sobre o gráfico para ver os números de cada ano.</span></p>
+      <div class="card tr-info">
+        <span class="ano-grande" id="tr-ano-v"></span>
+        <div class="readout" id="tr-readout"></div>
+      </div>
     <div class="card"><div class="chart" id="tr-chart"></div></div>
   </div>
     <div class="bloco-res">
@@ -648,7 +648,7 @@ body { margin: 0; }
   </div>
   </section>
 
-  <!-- MODELO -->
+  <!-- MODELO (aba oculta: sem botao no menu; conteudo mantido) -->
   <section class="painel" id="modelo" role="tabpanel" aria-labelledby="t-modelo" hidden>
     <div class="intro">
       <span class="eyebrow">Por trás dos números</span>
@@ -691,56 +691,41 @@ body { margin: 0; }
 <!-- DECISOES -->
   <section class="painel" id="decisoes" role="tabpanel" aria-labelledby="t-decisoes" hidden>
     <div class="intro">
-      <span class="eyebrow">Como chegamos ao modelo final</span>
-      <h2>As decisões, em ordem</h2>
-      <p class="sub">Cada passo corrigiu um problema ou respondeu uma dúvida deixada pelo anterior. O registro completo, com todos os números, está no arquivo DECISOES.md do projeto.</p>
+      <span class="eyebrow">Como o modelo foi construído</span>
+      <h2>Do modelo antigo ao modelo final, passo a passo</h2>
+      <p class="sub">Cada passo resolveu um problema deixado pelo anterior.</p>
     </div>
     <div class="card">
       <ol class="tempo">
-        <li><div><h3>Escopo dos dados</h3>
-          <p>Três áreas (Natural, Rejeito, Plantio), com a Natural restrita ao rótulo exato "Natural"; 148 espécies com atributos e nicho; 30 anos (1990–2024). Visita = campanha × vistoria; a detecção é registrada por visita.</p></div></li>
-        <li><div><h3>Três erros nos dados corrigidos</h3>
-          <p>Capturas sem vistoria deixavam 7 área-anos sem visita (a captura virava impossível); esforço ausente entrava como zero; o esforço era somado por peixe em vez de por rede.</p>
-          <p class="efeito">Efeito: cerca de 70% da verossimilhança do modelo anterior era artefato desses erros.</p></div></li>
-        <li><div><h3>Hipóteses traduzidas em partes do modelo</h3>
-          <p>Abundância entrou na persistência, na colonização e na captura (para separar efeito demográfico de efeito de captura); tamanho, amplitude e posição de nicho, migração e estratégia periódica entraram em φ e γ; quatro fatores ganharam coeficiente por área (H3).</p></div></li>
-        <li><div><h3>Captura por visita, não por ano</h3>
-          <p>Com uma observação por ano, o modelo não tinha como separar "ausente" de "presente e não capturada". Com as visitas, passou a ter.</p>
+        <li><div><h3>Ponto de partida: a regressão da qualificação</h3>
+          <p>A persistência era a fração dos anos com captura, analisada por uma regressão em cada área. O problema: um ano sem captura contava como ausência, e o que facilita a captura (como a abundância) aparecia como persistência. Daí a troca por um modelo de ocupação dinâmica, que separa presença de captura.</p></div></li>
+        <li><div><h3>Dados organizados e corrigidos</h3>
+          <p>Três áreas (a Natural só com o rótulo exato "Natural"), 148 espécies com atributos e nicho, 30 anos (1990–2024). Cada visita é uma campanha × vistoria. Três erros da planilha foram corrigidos: capturas sem vistoria, esforço ausente contado como zero e esforço somado por peixe em vez de por rede. O esforço que falta passou a ser estimado pelo modelo.</p></div></li>
+        <li><div><h3>As hipóteses viram partes do modelo</h3>
+          <p>Cada preditor da qualificação entrou na persistência (φ) e na colonização (γ). A abundância entrou também na captura (p), para separar o efeito demográfico do efeito de captura (H3). Quatro preditores (abundância, paisagem, posição e amplitude de nicho) ganharam um coeficiente por área, para testar se o peso deles depende do local.</p></div></li>
+        <li><div><h3>Captura avaliada em cada visita</h3>
+          <p>Com uma observação por ano, o modelo não distinguia "ausente" de "presente e não capturada". Com as visitas repetidas no mesmo ano, passou a distinguir.</p>
           <p class="efeito">Efeito: espécies persistentes na Natural de 80% para 63%; o efeito da abundância na persistência caiu de 0,64 para 0,20.</p></div></li>
         <li><div><h3>Anos de pesca melhores e piores</h3>
-          <p>A checagem preditiva mostrou capturas mais agrupadas dentro do ano do que o previsto. Entrou um efeito de ano em p e a anomalia de profundidade (cheia), que não explicou a variação.</p></div></li>
-        <li><div><h3>Efeito próprio de cada espécie</h3>
-          <p>Com os erros corrigidos, o efeito aleatório de espécie em φ e γ passou a melhorar claramente a previsão (LOO, 4 erros-padrão). Os efeitos de nicho continuaram firmes com ele.</p></div></li>
-        <li><div><h3>Comparação com o modelo antigo</h3>
-          <p>A regressão da qualificação foi refeita com os dados atuais e posta lado a lado com o modelo novo (aba Hipóteses, Visão geral).</p></div></li>
-        <li><div><h3>Testes de robustez</h3>
-          <p>Corte de persistência de 30% a 70% e sem corte; sem as espécies raras (≤ 2 indivíduos); priors duas vezes mais largos. As conclusões se mantêm; só a magnitude da posição de nicho diminui sem as raras.</p></div></li>
-        <li><div><h3>Ocupação na paisagem corrigida pela captura</h3>
-          <p>As três áreas de cada espécie passaram a ser modeladas juntas, e a paisagem passou a ser a presença real nas outras áreas, não as capturas.</p>
+          <p>As capturas variavam entre anos mais do que o modelo previa. Entrou um efeito de ano na captura e a cheia (anomalia de profundidade).</p></div></li>
+        <li><div><h3>Diferenças próprias de cada espécie</h3>
+          <p>Cada espécie ganhou um efeito próprio em φ, γ e p, para o que os atributos não explicam (inclusive a semelhança filogenética). A previsão melhorou, e os efeitos de nicho se mantiveram.</p></div></li>
+        <li><div><h3>Paisagem corrigida pela captura</h3>
+          <p>As três áreas de cada espécie passaram a ser modeladas juntas, e a paisagem passou a ser a presença estimada nas outras áreas, e não as capturas.</p>
           <p class="efeito">Efeito: apareceu o efeito resgate na colonização (de 0,17 para cerca de 0,7).</p></div></li>
-        <li><div><h3>Ajuste fino da convergência</h3>
-          <p>Os efeitos de ano na captura passaram a ser centrados dentro de cada área, o que eliminou uma redundância com o intercepto.</p>
-          <p class="efeito">Efeito: parâmetros com alerta de convergência de 27 para 5 (todos na fronteira).</p></div></li>
-        <li><div><h3>Validação cruzada</h3>
-          <p>O LOO não conseguia comparar a paisagem latente com a antiga. O modelo foi ajustado 10 vezes, cada vez sem um grupo de ~15 espécies, e julgado pela previsão das capturas dessas espécies (cerca de 10 horas de computação).</p>
-          <p class="efeito">Efeito: a paisagem latente prevê melhor espécies nunca vistas (+9,4 ± 5,0; 89 de 148 espécies), mesmo numa comparação que favorece o modelo antigo.</p></div></li>
+        <li><div><h3>Verificações do modelo final</h3>
+          <p>Os dados simulados pelo modelo reproduzem os reais (capturas por visita, anos com registro e trocas de espécies entre anos). As conclusões se mantêm com cortes de persistência de 30% a 70%, sem as espécies raras e com priors duas vezes mais largos. Na validação cruzada, ajustando o modelo sem grupos de espécies e prevendo as capturas delas, a paisagem estimada previu melhor que a paisagem pelas capturas.</p></div></li>
       </ol>
     </div>
     <div class="card">
-      <h3 style="margin-bottom:4px">Como os efeitos-chave mudaram a cada versão do modelo</h3>
-      <p class="small muted" style="margin-bottom:10px">A cada correção, o efeito da abundância na persistência e o da estratégia periódica diminuíram, a posição de nicho ficou estável e o efeito da paisagem na colonização só apareceu quando a paisagem passou a ser corrigida pela captura. Médias posteriores registradas no DECISOES.md.</p>
+      <h3 style="margin-bottom:4px">Como os efeitos principais mudaram ao longo dos passos</h3>
+      <p class="small muted" style="margin-bottom:10px">Cada ponto é uma versão do modelo: captura anual (antes do passo 4), por visita (passo 4), com efeito de ano (5), com efeito de espécie (6) e final (7). O efeito da abundância na persistência e o da estratégia periódica diminuíram, a posição de nicho ficou estável e o efeito da paisagem na colonização só apareceu no passo 7.</p>
       <div class="chart" id="evo-chart"></div>
     </div>
-    <div class="duas">
-      <div class="card leitura">
-        <h3>O que ficou de fora, e por quê</h3>
-        <p><strong>Filogenia (PGLS):</strong> o efeito aleatório de espécie já absorve a semelhança entre espécies que os atributos não explicam, inclusive a filogenética.</p>
-        <p><strong>Codificação fuzzy dos atributos:</strong> a tabela disponível tem uma categoria por espécie; migração virou um escore (sedentária a longa distância) e reprodução, periódica × demais.</p>
-              </div>
-      <div class="card leitura">
-        <h3>O que melhoraria o modelo</h3>
-        <p><strong>Cota do rio Trombetas por data de campanha:</strong> o indicador de cheia disponível (profundidade máxima da limnologia) não tem data e não explicou a variação de captura entre anos.</p>
-      </div>
+    <div class="card leitura">
+      <h3>O que ficou de fora, e por quê</h3>
+      <p><strong>Filogenia (PGLS):</strong> o efeito próprio de cada espécie (passo 6) já absorve a semelhança entre espécies que os atributos não explicam, inclusive a filogenética.</p>
+      <p><strong>Codificação fuzzy dos atributos:</strong> a tabela disponível tem uma categoria por espécie; a migração virou um escore (de sedentária a longa distância) e a reprodução, periódica × demais.</p>
     </div>
   </section>
 
@@ -1260,7 +1245,7 @@ body { margin: 0; }
   // =========================================================================
   // TRAJETORIA
   // =========================================================================
-  const tr = { i: anos.length - 1, timer: null };
+  const tr = { i: anos.length - 1 };
   RENDER.trajetoria = function () {
     const cont = document.getElementById("tr-chart");
     const W = larg(cont), esq = 44, dir = 12, ph = 150, gap = 34;
@@ -1298,7 +1283,7 @@ body { margin: 0; }
       alvo.addEventListener("pointermove", (ev) => {
         const r = svg.getBoundingClientRect(), xv = (ev.clientX - r.left) * (W / r.width);
         let mi = 0; anos.forEach((ano, i) => { if (Math.abs(x(ano) - xv) < Math.abs(x(anos[mi]) - xv)) mi = i; });
-        pararTr(); irAno(mi);
+        irAno(mi);
       });
     });
     tr.x = x; irAno(tr.i);
@@ -1306,7 +1291,6 @@ body { margin: 0; }
   RENDER.resultados = function () { RENDER.trajetoria(); RENDER.especies(); };
   function irAno(i) {
     tr.i = i;
-    document.getElementById("tr-ano").value = i;
     document.getElementById("tr-ano-v").textContent = anos[i];
     if (tr.cursores) tr.cursores.forEach((c) => {
       const T = D.trajetoria[c.a], xx = tr.x(anos[i]);
@@ -1320,14 +1304,6 @@ body { margin: 0; }
           : `Sem coleta neste ano<br><span class="muted">Previsão do modelo: ${pct(T.ocupadas[i])}</span>`) + `</div>`;
     }).join("");
   }
-  function pararTr() { if (tr.timer) { clearInterval(tr.timer); tr.timer = null; document.getElementById("tr-play").textContent = "▶ Tocar"; } }
-  document.getElementById("tr-play").addEventListener("click", () => {
-    if (tr.timer) return pararTr();
-    if (tr.i >= anos.length - 1) irAno(0);
-    document.getElementById("tr-play").textContent = "⏸ Pausar";
-    tr.timer = setInterval(() => { if (tr.i >= anos.length - 1) return pararTr(); irAno(tr.i + 1); }, 650);
-  });
-  document.getElementById("tr-ano").addEventListener("input", (e) => { pararTr(); irAno(+e.target.value); });
 
   // =========================================================================
   // ESPECIES
