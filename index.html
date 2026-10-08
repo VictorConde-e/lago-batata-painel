@@ -340,11 +340,11 @@ body { margin: 0; }
     </div>
 
     <div class="card leitura" id="sim">
-      <h3>Experimente: o que a captura imperfeita faz com a persistência simples</h3>
-      <p>Uma espécie fictícia, numa área, ao longo de 30 anos. Escolha a chance de ela ficar (φ) e de voltar (γ), a chance de cair na rede em cada visita (p) e quantas visitas há por ano. A primeira faixa mostra os anos em que ela de fato estava na área; a segunda, os anos em que a rede a capturou. Os valores iniciais são próximos dos do Lago Batata: uma espécie presente é capturada em cerca de metade dos anos.</p>
+      <h3>Captura imperfeita</h3>
+      <p>Uma espécie fictícia, numa área, ao longo de 30 anos. Escolha a chance de ela persistir (φ) e de colonizar (γ), a chance de cair na rede em cada visita (p) e quantas visitas há por ano. A primeira faixa mostra os anos em que ela de fato estava na área; a segunda, os anos em que a rede a capturou. Os valores iniciais são próximos dos do Lago Batata: uma espécie presente é capturada em cerca de metade dos anos.</p>
       <div class="sim-ctl">
-        <label class="ctl" for="sim-phi">φ · fica <input type="range" id="sim-phi" min="0.05" max="0.95" step="0.05" value="0.8"><b id="sim-phi-v"></b></label>
-        <label class="ctl" for="sim-gamma">γ · volta <input type="range" id="sim-gamma" min="0.05" max="0.95" step="0.05" value="0.3"><b id="sim-gamma-v"></b></label>
+        <label class="ctl" for="sim-phi">φ · persiste <input type="range" id="sim-phi" min="0.05" max="0.95" step="0.05" value="0.8"><b id="sim-phi-v"></b></label>
+        <label class="ctl" for="sim-gamma">γ · coloniza <input type="range" id="sim-gamma" min="0.05" max="0.95" step="0.05" value="0.3"><b id="sim-gamma-v"></b></label>
         <label class="ctl" for="sim-p">p · captura por visita <input type="range" id="sim-p" min="0.05" max="0.95" step="0.05" value="0.3"><b id="sim-p-v"></b></label>
         <label class="ctl" for="sim-k">Vistoria <input type="range" id="sim-k" min="1" max="6" step="1" value="2"><b id="sim-k-v"></b></label>
       </div>
@@ -360,7 +360,7 @@ body { margin: 0; }
           <p>Para cada espécie, área, ano e visita (campanha × vistoria): 1 se a espécie caiu na rede, 0 se não caiu. Anos sem coleta ficam em branco, não como zero.</p></div></li>
         <li><div><h3>O modelo aprende a chance de captura (p)</h3>
           <p>Quando uma espécie aparece em uma de duas visitas do mesmo ano, ela estava lá na outra visita e escapou. Com milhares de casos assim, o modelo mede com que frequência uma espécie presente escapa, e como isso muda com o esforço, a abundância e o ano.</p></div></li>
-        <li><div><h3>O modelo aprende a chance de ficar e de voltar (φ e γ)</h3>
+        <li><div><h3>O modelo aprende a chance de persistir e de colonizar (φ e γ)</h3>
           <p>Descontada a captura, as sequências de anos com e sem captura mostram com que frequência cada espécie some e reaparece. Os coeficientes β dizem que fatores mexem nisso: é aqui que estão H2, H3 e a paisagem.</p></div></li>
         <li><div><h3>Cada ano de cada espécie ganha uma probabilidade de presença</h3>
           <p>Ano com captura: presença certa (100%). Ano sem captura: depende de quão fácil é capturar a espécie e do que aconteceu antes e depois. Um ano vazio entre dois anos com captura, para uma espécie difícil de pegar, fica perto de 100%; vários anos vazios seguidos, para uma espécie fácil de pegar, ficam perto de 0%. É a curva "Presença" da aba Resultados gerais.</p></div></li>
@@ -371,7 +371,7 @@ body { margin: 0; }
     </div>
 
     <div class="card leitura">
-      <h3>As equações, cada uma com a leitura em palavras</h3>
+      <h3>Equações</h3>
       <p class="small muted">Índices: <i>s</i> = espécie, <i>a</i> = área (Natural, Rejeito, Plantio), <i>t</i> = ano, <i>k</i> = visita dentro do ano.</p>
 
       <div class="bloco-eq">
@@ -383,7 +383,7 @@ body { margin: 0; }
       <div class="bloco-eq">
         <span class="eyebrow">2 · De um ano para o outro</span>
         <div class="eq"><span class="t">P(<i>z</i><sub>t+1</sub> = 1 | <i>z</i><sub>t</sub> = 1) = <i>φ</i><sub>s,a,t</sub></span><span class="t">&nbsp;&nbsp;e&nbsp;&nbsp;</span><span class="t">P(<i>z</i><sub>t+1</sub> = 1 | <i>z</i><sub>t</sub> = 0) = <i>γ</i><sub>s,a,t</sub></span></div>
-        <p class="palavras">Se a espécie estava, ela continua no ano seguinte com probabilidade φ; se não estava, ela chega com probabilidade γ. No primeiro ano (1990), ela está com probabilidade ψ<sub>a</sub>, uma por área.</p>
+        <p class="palavras">Se a espécie estava, ela persiste no ano seguinte com probabilidade φ; se não estava, ela coloniza a área com probabilidade γ. No primeiro ano (1990), ela está com probabilidade ψ<sub>a</sub>, uma por área.</p>
       </div>
 
       <div class="bloco-eq">
@@ -399,7 +399,7 @@ body { margin: 0; }
           <span class="t">+ <i>β</i><sub>imp</sub>·impacto<sub>a,t</sub> + <i>β</i><sub>int</sub>·bentônico<sub>s</sub>×impacto<sub>a,t</sub></span>
           <span class="t">+ <i>α</i><sub>s</sub></span>
         </div>
-        <p class="palavras">Cada fator empurra a chance de ficar para cima (β &gt; 0) ou para baixo (β &lt; 0). <i>μ</i><sub>a</sub> é a base de cada área; <i>α</i><sub>s</sub> é o "jeito próprio" de cada espécie, o que os atributos medidos não explicam. γ tem a mesma forma (sem a interação bentônico × impacto), com seus próprios β. Os quatro primeiros fatores têm um β por área (índice <i>a</i>): é assim que se testa se a importância de cada fator depende do local.</p>
+        <p class="palavras">Cada fator empurra a chance de persistir para cima (β &gt; 0) ou para baixo (β &lt; 0). <i>μ</i><sub>a</sub> é a base de cada área; <i>α</i><sub>s</sub> é o "jeito próprio" de cada espécie, o que os atributos medidos não explicam. γ tem a mesma forma (sem a interação bentônico × impacto), com seus próprios β. Os quatro primeiros fatores têm um β por área (índice <i>a</i>): é assim que se testa se a importância de cada fator depende do local.</p>
       </div>
 
       <div class="bloco-eq">
@@ -489,7 +489,6 @@ body { margin: 0; }
           <tr><td>Filogenia</td><td>Possível (PGLS).</td><td>Não incluída; o efeito de espécie absorve a semelhança não explicada.</td></tr>
         </tbody>
       </table></div>
-      <p>O modelo antigo continua tendo vantagens: é rápido, fácil de explicar, comparável com a literatura de persistência, permite incluir filogenia e não depende de suposições sobre a captura. O custo é tratar como persistência tudo o que torna uma espécie fácil de capturar, juntar ficar e voltar num número só e perder precisão onde há poucos anos de coleta.</p>
     </div>
   </section>
 
@@ -531,7 +530,7 @@ body { margin: 0; }
 
     <div class="hip-vista" id="hv-h2" hidden>
       <div class="card hip-cab" id="cab-h2"></div>
-      <p class="ler"><span><b>Como ler:</b> cada linha é um atributo; à direita do zero, o atributo ajuda a espécie a ficar (φ, à esquerda) ou a voltar (γ, à direita). Ponto cheio = o intervalo de 90% não cruza o zero. A amplitude de nicho tem um coeficiente por área (cores); os outros atributos, um só para as três (cinza). Tamanho, amplitude e migração estão padronizados (efeito por desvio-padrão); estratégia periódica é sim ou não.</span></p>
+      <p class="ler"><span><b>Como ler:</b> cada linha é um atributo; à direita do zero, o atributo ajuda a espécie a persistir (φ, à esquerda) ou a colonizar (γ, à direita). Ponto cheio = o intervalo de 90% não cruza o zero. A amplitude de nicho tem um coeficiente por área (cores); os outros atributos, um só para as três (cinza). Tamanho, amplitude e migração estão padronizados (efeito por desvio-padrão); estratégia periódica é sim ou não.</span></p>
       <div class="legend" id="h2-legenda"></div>
       <div class="duas">
         <div class="card"><h3 style="margin-bottom:6px">Persistência local (φ)</h3><div class="chart" id="h2-phi"></div></div>
@@ -892,10 +891,10 @@ body { margin: 0; }
   document.getElementById("divergencias").innerHTML = `
     <thead><tr><th>Questão</th><th>Modelo antigo</th><th>Modelo novo</th><th>Por que muda</th></tr></thead><tbody>
     <tr><td>Abundância</td><td>Principal preditor nas 3 áreas (t de ${faixaT("abund")}).</td><td>Sem efeito na persistência (${nf(ultimo("abund_phi"))}); age na captura (${nf(ultimo("abund_p"))}).</td><td>Espécie abundante é capturada com mais facilidade e por isso aparece em mais anos.</td></tr>
-    <tr><td>Ocupação na paisagem</td><td>Forte nas 3 áreas (t de ${faixaT("viz")}).</td><td>Quase nada na persistência; forte na colonização (${nf(ultimo("viz_gamma"))}).</td><td>As capturas nas outras áreas também medem capturabilidade. Corrigida, a paisagem aparece onde faz sentido ecológico: na volta da espécie.</td></tr>
+    <tr><td>Ocupação na paisagem</td><td>Forte nas 3 áreas (t de ${faixaT("viz")}).</td><td>Quase nada na persistência; forte na colonização (${nf(ultimo("viz_gamma"))}).</td><td>As capturas nas outras áreas também medem capturabilidade. Corrigida, a paisagem aparece onde faz sentido ecológico: na colonização.</td></tr>
     <tr><td>Posição de nicho</td><td>Natural e Rejeito; não aparece no Plantio (t de ${faixaT("nichopos")}).</td><td>Forte nas 3 áreas (Plantio ${nf(efA("phi", "nichopos", "Plantio").media)}).</td><td>Com 12 anos de coleta, a persistência simples do Plantio é ruidosa demais para mostrar o efeito.</td></tr>
-    <tr><td>Amplitude de nicho</td><td>Só na Natural.</td><td>Persistência na Natural; colonização nas 3 áreas.</td><td>O modelo separa ficar de voltar e junta a informação das áreas.</td></tr>
-    <tr><td>Bentônico</td><td>Negativo só no Plantio.</td><td>Reduz a colonização nas 3 áreas (${nf(comum("gamma", "Bent").media)}).</td><td>O efeito é sobre voltar, não sobre ficar; o modelo antigo misturava os dois.</td></tr>
+    <tr><td>Amplitude de nicho</td><td>Só na Natural.</td><td>Persistência na Natural; colonização nas 3 áreas.</td><td>O modelo separa persistência de colonização e junta a informação das áreas.</td></tr>
+    <tr><td>Bentônico</td><td>Negativo só no Plantio.</td><td>Reduz a colonização nas 3 áreas (${nf(comum("gamma", "Bent").media)}).</td><td>O efeito é sobre a colonização, não sobre a persistência; o modelo antigo misturava as duas.</td></tr>
     <tr><td>H1</td><td>${faixaH1(h1s, "comum")} de persistentes; a Natural com menos (${pct(h1s("comum", "Natural").media)}).</td><td>${faixaH1(h1m, "comum")}; Natural = Rejeito; Plantio igual ou um pouco abaixo.</td><td>A captura imperfeita esconde a maior parte das espécies persistentes, e mais em umas áreas que em outras.</td></tr>
     <tr><td>Onde concordam</td><td colspan="3">Posição de nicho desfavorável à persistência, amplitude de nicho favorável na Natural, bentônicos em desvantagem, migração sem efeito.</td></tr>
     </tbody>`;
@@ -917,8 +916,8 @@ body { margin: 0; }
       cap(3, "Onde o modelo antigo falha", `
         <ul>
           <li>Um ano sem captura não significa que a espécie estava ausente. Pelo modelo novo, uma espécie presente é capturada em cerca de metade dos anos, com duas visitas por ano na mediana. Por isso a persistência simples encontra ${faixaH1(h1s, "comum")} de espécies persistentes nas três áreas, enquanto o modelo encontra ${faixaH1(h1m, "comum")}.</li>
-          <li>O que facilita a captura aumenta a persistência simples. Espécies abundantes aparecem em mais anos mesmo sem ficar mais tempo, e o mesmo vale para a ocupação na paisagem, que era calculada com as capturas nas outras áreas. Eram justamente as duas variáveis mais fortes na regressão.</li>
-          <li>Uma espécie que nunca sai da área e outra que sai e volta com frequência podem ter a mesma fração de anos com captura. A medida não separa os dois casos, que têm causas ecológicas diferentes.</li>
+          <li>O que facilita a captura aumenta a persistência simples. Espécies abundantes aparecem em mais anos mesmo sem persistir mais, e o mesmo vale para a ocupação na paisagem, que era calculada com as capturas nas outras áreas. Eram justamente as duas variáveis mais fortes na regressão.</li>
+          <li>Uma espécie que sempre persiste na área e outra que se extingue e recoloniza com frequência podem ter a mesma fração de anos com captura. A medida não separa os dois casos, que têm causas ecológicas diferentes.</li>
           <li>O Plantio tem 12 anos de coleta, e com tão poucos anos a fração observada varia muito. A posição de nicho, forte nas outras áreas, não aparece no Plantio na regressão (t = ${nf(tPlantio, 2)}).</li>
           <li>Cada área tinha a sua regressão, e nenhuma usava a informação das outras.</li>
         </ul>`),
@@ -926,13 +925,13 @@ body { margin: 0; }
         <p>Os modelos de ocupação dinâmica foram criados para esse tipo de problema (MacKenzie et al. 2003). Kelleher et al. (2025) revisaram 20 anos de aplicações desses modelos, que acompanham a ocupação ao longo do tempo levando em conta a detecção imperfeita. Eles têm duas partes: uma ecológica, em que a espécie está ou não está na área e muda de estado entre os anos, e uma de observação, em que, estando presente, ela é ou não registrada.</p>
         <div class="eq"><span class="t"><i>z</i><sub>1</sub> ~ Bernoulli(<i>ψ</i>)</span><span class="t">; &nbsp;<i>z</i><sub>t</sub> ~ Bernoulli( <i>z</i><sub>t−1</sub>(1 − <i>ε</i>) + (1 − <i>z</i><sub>t−1</sub>) <i>γ</i> )</span><span class="t">; &nbsp;<i>y</i> ~ Bernoulli(<i>z</i> · <i>p</i>)</span></div>
         <p><i>ψ</i> é a ocupação no primeiro ano, <i>ε</i> a extinção local (a espécie estava e deixa de estar), <i>γ</i> a colonização e <i>p</i> a detecção. No Lago Batata, o ano é a ocasião primária, a visita (campanha × vistoria) é a ocasião secundária e a área é o sítio. São as visitas repetidas dentro do ano que permitem estimar <i>p</i>.</p>
-        <p>O modelo supõe que, dentro de um ano, a espécie está ou não está na área durante todas as visitas; aqui, ocupação deve ser lida como uso da área naquele ano. Supõe também que os sítios são independentes, o que deixamos de lado ao ligar as três áreas, e que não há falsos positivos, o que é razoável para peixes identificados em laboratório.</p>`),
+        <p>O modelo supõe que, dentro de um ano, a espécie está ou não está na área durante todas as visitas; aqui, ocupação deve ser lida como uso da área naquele ano. Supõe também que não há falsos positivos e que os sítios são independentes, o que deixamos de lado ao ligar as três áreas.</p>`),
       cap(5, "De extinção para persistência", `
-        <p>Como a dissertação trata de persistência, escrevi o modelo com <i>φ</i> = 1 − <i>ε</i>, a probabilidade de a espécie continuar na área de um ano para o outro. O modelo é o mesmo, e um coeficiente positivo em <i>φ</i> passa a significar que o fator ajuda a espécie a ficar.</p>
+        <p>Como a dissertação trata de persistência, escrevi o modelo com <i>φ</i> = 1 − <i>ε</i>, a probabilidade de a espécie continuar na área de um ano para o outro. O modelo é o mesmo, e um coeficiente positivo em <i>φ</i> passa a significar que o fator ajuda a espécie a persistir.</p>
         <div class="eq"><span class="t"><i>z</i><sub>t</sub> ~ Bernoulli( <i>z</i><sub>t−1</sub> · <i>φ</i> + (1 − <i>z</i><sub>t−1</sub>) · <i>γ</i> )</span></div>
         <p>Falta ligar isso à persistência temporal da qualificação. Se <i>φ</i> e <i>γ</i> fossem constantes, a fração dos anos em que a espécie está na área tenderia a</p>
         <div class="eq"><span class="t"><i>ψ</i>* = <i>γ</i> / (<i>γ</i> + 1 − <i>φ</i>)</span></div>
-        <p>A persistência temporal depende, portanto, de dois processos: ficar e voltar. Uma espécie com <i>φ</i> = 0,8 e <i>γ</i> = 0,3 e outra com <i>φ</i> = 0,5 e <i>γ</i> = 0,75 passam, ambas, 60% dos anos na área. A primeira porque raramente sai, a segunda porque sai com frequência e volta logo. Por isso cada hipótese foi testada separadamente em <i>φ</i> e em <i>γ</i>.</p>
+        <p>A persistência temporal depende, portanto, de dois processos: persistir e colonizar. Uma espécie com <i>φ</i> = 0,8 e <i>γ</i> = 0,3 e outra com <i>φ</i> = 0,5 e <i>γ</i> = 0,75 passam, ambas, 60% dos anos na área. A primeira porque raramente se extingue, a segunda porque se extingue com frequência e recoloniza logo. Por isso cada hipótese foi testada separadamente em <i>φ</i> e em <i>γ</i>.</p>
         <p>No Lago Batata, <i>φ</i> e <i>γ</i> variam entre anos, com o impacto, a paisagem e a espécie, e a persistência de cada espécie é calculada diretamente: a média, nos anos com coleta, da probabilidade de ela estar presente dadas todas as capturas (algoritmo forward-backward). O corte de 50% da qualificação foi aplicado a essa persistência pra classificar as espécies persistentes.</p>`),
       cap(6, "As hipóteses dentro do modelo", `
         <ul>
@@ -1118,7 +1117,7 @@ body { margin: 0; }
   // --- H2
   const TRACOS_H2 = ["MBl", "nichoamp", "migr", "periodico"];
   const PREV_H2 = { MBl: "positivo", nichoamp: "positivo", migr: "positivo", periodico: "algum efeito" };
-  const CONCL_H2 = { MBl: "Fraco: só na colonização.", nichoamp: "Suportada: favorece ficar (Natural) e voltar (3 áreas).",
+  const CONCL_H2 = { MBl: "Fraco: só na colonização.", nichoamp: "Suportada: favorece persistir (Natural) e colonizar (3 áreas).",
     migr: "Não suportada.", periodico: "Sem evidência." };
   document.getElementById("h2-legenda").innerHTML = legendaAreas;
   function leituraR(r) {
@@ -1174,7 +1173,7 @@ body { margin: 0; }
         <p>Abundância, ocupação na paisagem, tamanho, hábito bentônico, migração, estratégia periódica e impacto têm efeitos pequenos ou incertos.</p>
         <p class="small muted">Variação entre espécies não explicada pelos atributos: σ = ${nf(het.sigma_sp_phi)}. Diferença entre áreas nos preditores centrais: τ = ${nf(het.tau_phi)}.</p></div>` : `
       <div class="card leitura"><span class="eyebrow">Colonização (γ)</span>
-        <p>A ocupação na paisagem tem o maior efeito positivo: cada outra área ocupada aumenta a chance de a espécie voltar (Natural ${nf(efA("gamma", "viz", "Natural").media)}, Rejeito ${nf(efA("gamma", "viz", "Rejeito").media)}, Plantio ${nf(efA("gamma", "viz", "Plantio").media)}).</p>
+        <p>A ocupação na paisagem tem o maior efeito positivo: cada outra área ocupada aumenta a chance de a espécie colonizar a área (Natural ${nf(efA("gamma", "viz", "Natural").media)}, Rejeito ${nf(efA("gamma", "viz", "Rejeito").media)}, Plantio ${nf(efA("gamma", "viz", "Plantio").media)}).</p>
         <p>A posição de nicho reduz a colonização, mais no Rejeito e no Plantio. A amplitude de nicho aumenta, e a abundância aumenta sobretudo no Plantio (${nf(efA("gamma", "abund", "Plantio").media)}). Espécies bentônicas recolonizam menos em todas as áreas, o mesmo padrão bentônico da qualificação. O tamanho tem efeito fraco (${nf(efA("gamma", "MBl", "Natural").media)}, de ${nf(efA("gamma", "MBl", "Natural").lo)} a ${nf(efA("gamma", "MBl", "Natural").hi)}).</p>
         <p class="small muted">σ entre espécies = ${nf(het.sigma_sp_gamma)}; τ entre áreas = ${nf(het.tau_gamma)} (intervalo longe de zero: aqui a importância dos preditores depende do local).</p></div>`;
   };
