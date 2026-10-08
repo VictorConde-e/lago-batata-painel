@@ -275,7 +275,7 @@ body { margin: 0; }
           </defs>
           <rect x="360" y="8" width="220" height="46" rx="8" style="fill:var(--surface);stroke:var(--axis);stroke-width:1.4"></rect>
           <text x="470" y="27" text-anchor="middle" style="fill:var(--ink);font-size:12.5px;font-weight:600">Fatores da espécie e da área</text>
-          <text x="470" y="44" text-anchor="middle" style="fill:var(--ink-2);font-size:11.5px">traços · nicho · abundância · impacto</text>
+          <text x="470" y="44" text-anchor="middle" style="fill:var(--ink-2);font-size:11.5px">atributos · nicho · abundância · impacto</text>
           <line x1="470" y1="54" x2="470" y2="360" style="stroke:var(--ink-2);stroke-width:1.4"></line>
           <text x="478" y="76" style="fill:var(--ink-2);font-size:11.5px">β: mudam φ e γ</text>
           <text x="230" y="104" text-anchor="middle" style="fill:var(--muted);font-size:12px;letter-spacing:.06em">ANO t</text>
@@ -405,7 +405,7 @@ body { margin: 0; }
           <span class="t">+ <i>β</i><sub>imp</sub>·impacto<sub>a,t</sub> + <i>β</i><sub>int</sub>·bentônico<sub>s</sub>×impacto<sub>a,t</sub></span>
           <span class="t">+ <i>α</i><sub>s</sub></span>
         </div>
-        <p class="palavras">Cada fator empurra a chance de ficar para cima (β &gt; 0) ou para baixo (β &lt; 0). <i>μ</i><sub>a</sub> é a base de cada área; <i>α</i><sub>s</sub> é o "jeito próprio" de cada espécie, o que os traços medidos não explicam. γ tem a mesma forma (sem a interação bentônico × impacto), com seus próprios β. Os quatro primeiros fatores têm um β por área (índice <i>a</i>): é assim que se testa se a importância de cada fator depende do local.</p>
+        <p class="palavras">Cada fator empurra a chance de ficar para cima (β &gt; 0) ou para baixo (β &lt; 0). <i>μ</i><sub>a</sub> é a base de cada área; <i>α</i><sub>s</sub> é o "jeito próprio" de cada espécie, o que os atributos medidos não explicam. γ tem a mesma forma (sem a interação bentônico × impacto), com seus próprios β. Os quatro primeiros fatores têm um β por área (índice <i>a</i>): é assim que se testa se a importância de cada fator depende do local.</p>
       </div>
 
       <div class="bloco-eq">
@@ -531,7 +531,7 @@ body { margin: 0; }
     </div>
     <div class="seg" role="group" aria-label="Hipótese" id="hip-sel">
       <button data-v="h1" aria-pressed="true">H1 · Áreas</button>
-      <button data-v="h2" aria-pressed="false">H2 · Traços</button>
+      <button data-v="h2" aria-pressed="false">H2 · Atributos</button>
       <button data-v="h3" aria-pressed="false">H3 · Abundância e local</button>
     </div>
 
@@ -560,14 +560,14 @@ body { margin: 0; }
 
     <div class="hip-vista" id="hv-h2" hidden>
       <div class="card hip-cab" id="cab-h2"></div>
-      <p class="ler"><span><b>Como ler:</b> cada linha é um traço; à direita do zero, o traço ajuda a espécie a ficar (φ, à esquerda) ou a voltar (γ, à direita). Ponto cheio = o intervalo de 90% não cruza o zero. A amplitude de nicho tem um coeficiente por área (cores); os outros traços, um só para as três (cinza). Tamanho, amplitude e migração estão padronizados (efeito por desvio-padrão); estratégia periódica é sim ou não.</span></p>
+      <p class="ler"><span><b>Como ler:</b> cada linha é um atributo; à direita do zero, o atributo ajuda a espécie a ficar (φ, à esquerda) ou a voltar (γ, à direita). Ponto cheio = o intervalo de 90% não cruza o zero. A amplitude de nicho tem um coeficiente por área (cores); os outros atributos, um só para as três (cinza). Tamanho, amplitude e migração estão padronizados (efeito por desvio-padrão); estratégia periódica é sim ou não.</span></p>
       <div class="legend" id="h2-legenda"></div>
       <div class="duas">
         <div class="card"><h3 style="margin-bottom:6px">Persistência local (φ)</h3><div class="chart" id="h2-phi"></div></div>
         <div class="card"><h3 style="margin-bottom:6px">Colonização (γ)</h3><div class="chart" id="h2-gamma"></div></div>
       </div>
       <div class="card leitura">
-        <h3>Traço por traço</h3>
+        <h3>Atributo por atributo</h3>
         <div class="scroll-x"><table class="quadro" id="h2-tab"></table></div>
       </div>
     </div>
@@ -705,7 +705,7 @@ body { margin: 0; }
     <div class="card">
       <ol class="tempo">
         <li><div><h3>Escopo dos dados</h3>
-          <p>Três áreas (Natural, Rejeito, Plantio), com a Natural restrita ao rótulo exato "Natural"; 148 espécies com traços e nicho; 30 anos (1990–2024). Visita = campanha × vistoria; a detecção é registrada por visita.</p></div></li>
+          <p>Três áreas (Natural, Rejeito, Plantio), com a Natural restrita ao rótulo exato "Natural"; 148 espécies com atributos e nicho; 30 anos (1990–2024). Visita = campanha × vistoria; a detecção é registrada por visita.</p></div></li>
         <li><div><h3>Três erros nos dados corrigidos</h3>
           <p>Capturas sem vistoria deixavam 7 área-anos sem visita (a captura virava impossível); esforço ausente entrava como zero; o esforço era somado por peixe em vez de por rede.</p>
           <p class="efeito">Efeito: cerca de 70% da verossimilhança do modelo anterior era artefato desses erros.</p></div></li>
@@ -741,8 +741,8 @@ body { margin: 0; }
     <div class="duas">
       <div class="card leitura">
         <h3>O que ficou de fora, e por quê</h3>
-        <p><strong>Filogenia (PGLS):</strong> o efeito aleatório de espécie já absorve a semelhança entre espécies que os traços não explicam, inclusive a filogenética.</p>
-        <p><strong>Codificação fuzzy dos traços:</strong> a tabela disponível tem uma categoria por espécie; migração virou um escore (sedentária a longa distância) e reprodução, periódica × demais.</p>
+        <p><strong>Filogenia (PGLS):</strong> o efeito aleatório de espécie já absorve a semelhança entre espécies que os atributos não explicam, inclusive a filogenética.</p>
+        <p><strong>Codificação fuzzy dos atributos:</strong> a tabela disponível tem uma categoria por espécie; migração virou um escore (sedentária a longa distância) e reprodução, periódica × demais.</p>
               </div>
       <div class="card leitura">
         <h3>O que melhoraria o modelo</h3>
@@ -919,7 +919,7 @@ body { margin: 0; }
         <p>A pergunta era por que algumas espécies de peixe permanecem por décadas no Lago Batata enquanto outras aparecem e somem, e se o assoreamento por rejeito de bauxita muda esse padrão. Isso virou a persistência temporal, a fração dos anos em que a espécie ocupa a área, com as espécies divididas em persistentes (mais da metade dos anos) e ocasionais, seguindo Magurran &amp; Henderson (2003).</p>
         <p>Eram três hipóteses. H1: áreas impactadas têm mais espécies persistentes. H2: espécies maiores, de nicho amplo e migradoras persistem mais. H3: a abundância local é o principal preditor da persistência, e o peso dos demais preditores depende do local.</p>`),
       cap(2, "O modelo antigo", `
-        <p>A persistência era medida diretamente nas capturas, como anos com captura divididos por anos amostrados (aqui chamada de persistência simples). Uma regressão (GLS) em cada área relacionava essa fração com a abundância média, a ocupação na paisagem, o nicho e os traços funcionais. A abundância saía como o preditor mais forte nas três áreas.</p>`),
+        <p>A persistência era medida diretamente nas capturas, como anos com captura divididos por anos amostrados (aqui chamada de persistência simples). Uma regressão (GLS) em cada área relacionava essa fração com a abundância média, a ocupação na paisagem, o nicho e os atributos funcionais. A abundância saía como o preditor mais forte nas três áreas.</p>`),
       cap(3, "Onde o modelo antigo falha", `
         <ul>
           <li>Um ano sem captura não significa que a espécie estava ausente. Pelo modelo novo, uma espécie presente é capturada em cerca de metade dos anos, com duas visitas por ano na mediana. Por isso a persistência simples encontra ${faixaH1(h1s, "comum")} de espécies persistentes nas três áreas, enquanto o modelo encontra ${faixaH1(h1m, "comum")}.</li>
@@ -1139,7 +1139,7 @@ body { margin: 0; }
   RENDER.h2 = function () {
     ["phi", "gamma"].forEach((proc) => floresta(document.getElementById("h2-" + proc),
       TRACOS_H2.map((k) => linhaPred(proc, k)), { esq: 150, linha: 50 }));
-    document.getElementById("h2-tab").innerHTML = `<thead><tr><th>Traço</th><th>Previsão</th><th>Persistência (φ)</th><th>Colonização (γ)</th><th>Conclusão</th></tr></thead><tbody>` +
+    document.getElementById("h2-tab").innerHTML = `<thead><tr><th>Atributo</th><th>Previsão</th><th>Persistência (φ)</th><th>Colonização (γ)</th><th>Conclusão</th></tr></thead><tbody>` +
       TRACOS_H2.map((k) => `<tr><td>${NOMES[k]}</td><td>${PREV_H2[k]}</td><td>${celH2("phi", k)}</td><td>${celH2("gamma", k)}</td><td>${CONCL_H2[k]}</td></tr>`).join("") + `</tbody>`;
   };
 
@@ -1178,7 +1178,7 @@ body { margin: 0; }
       <div class="card leitura"><span class="eyebrow">Persistência local (φ)</span>
         <p>Nas três áreas, a posição de nicho é o efeito mais forte: espécies de nicho marginal persistem bem menos. A amplitude de nicho aumenta a persistência, principalmente na Natural.</p>
         <p>Abundância, ocupação na paisagem, tamanho, hábito bentônico, migração, estratégia periódica e impacto têm efeitos pequenos ou incertos.</p>
-        <p class="small muted">Variação entre espécies não explicada pelos traços: σ = ${nf(het.sigma_sp_phi)}. Diferença entre áreas nos preditores centrais: τ = ${nf(het.tau_phi)}.</p></div>` : `
+        <p class="small muted">Variação entre espécies não explicada pelos atributos: σ = ${nf(het.sigma_sp_phi)}. Diferença entre áreas nos preditores centrais: τ = ${nf(het.tau_phi)}.</p></div>` : `
       <div class="card leitura"><span class="eyebrow">Colonização (γ)</span>
         <p>A ocupação na paisagem tem o maior efeito positivo: cada outra área ocupada aumenta a chance de a espécie voltar (Natural ${nf(efA("gamma", "viz", "Natural").media)}, Rejeito ${nf(efA("gamma", "viz", "Rejeito").media)}, Plantio ${nf(efA("gamma", "viz", "Plantio").media)}).</p>
         <p>A posição de nicho reduz a colonização, mais no Rejeito e no Plantio. A amplitude de nicho aumenta, e a abundância aumenta sobretudo no Plantio (${nf(efA("gamma", "abund", "Plantio").media)}). Espécies bentônicas recolonizam menos em todas as áreas, o mesmo padrão bentônico da qualificação. O tamanho tem efeito fraco (${nf(efA("gamma", "MBl", "Natural").media)}, de ${nf(efA("gamma", "MBl", "Natural").lo)} a ${nf(efA("gamma", "MBl", "Natural").hi)}).</p>
@@ -1391,7 +1391,7 @@ body { margin: 0; }
       const classe = d.occ_completa >= 0.5 ? "persistente" : "ocasional";
       const frase = d.registrada
         ? `Capturada em ${d.anos_reg} de ${nAmost} anos com coleta (${pct(d.persist_simples)}). Pelo modelo, esteve presente em ${pct(d.occ_completa)} desses anos: <b>${classe}</b> <span class="muted">(probabilidade de ser persistente: ${nf(d.p_persistente)}${d.cpue == null ? "" : `; CPUE média ${nf(d.cpue, 2)}`})</span>.`
-        : `Nunca capturada nesta área em ${nAmost} anos com coleta. O modelo atribui ${pct(d.occ_completa)} de presença média, a partir dos traços da espécie e da presença dela nas outras áreas; é uma estimativa com bastante incerteza.`;
+        : `Nunca capturada nesta área em ${nAmost} anos com coleta. O modelo atribui ${pct(d.occ_completa)} de presença média, a partir dos atributos da espécie e da presença dela nas outras áreas; é uma estimativa com bastante incerteza.`;
       boxA.innerHTML = `<span class="titulo-area"><i class="sw" style="background:${COR[a]}"></i>${a} <span class="small muted" style="font-weight:400">${SUB[a]}</span></span>
         <p class="small" style="color:var(--ink-2)">${frase}</p><div class="chart"></div>`;
       graficoArea(boxA.querySelector(".chart"), d, a);
