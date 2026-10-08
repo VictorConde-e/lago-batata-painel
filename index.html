@@ -267,7 +267,7 @@ body { margin: 0; }
       <h3>Esquema do modelo</h3>
       <figure style="margin:0;display:grid;gap:10px">
         <div class="scroll-x diagrama">
-        <svg viewBox="0 0 720 472" style="min-width:560px;max-width:780px" role="img" aria-labelledby="esq-tit">
+        <svg viewBox="0 0 850 472" style="min-width:600px;max-width:920px" role="img" aria-labelledby="esq-tit">
           <title id="esq-tit">Exemplo de uma espécie nas três áreas, do ano t para o ano t + 1. Bola cheia = presente, vazia = ausente. No Rejeito ela estava e continua (φ, persiste); na Natural não estava e chega (γ, coloniza), com a paisagem vinda das outras duas áreas; no Plantio estava e sai (1 − φ, extinção). φ e γ dependem dos fatores da espécie e da área. Em cada visita, uma espécie presente é capturada com chance p, que depende do esforço, da abundância, da cheia, do ano e da espécie.</title>
           <defs>
             <marker id="esq-seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" style="fill:var(--ink-2)"></path></marker>
@@ -280,6 +280,7 @@ body { margin: 0; }
           <text x="478" y="76" style="fill:var(--ink-2);font-size:11.5px">β: mudam φ e γ</text>
           <text x="230" y="104" text-anchor="middle" style="fill:var(--muted);font-size:12px;letter-spacing:.06em">ANO t</text>
           <text x="560" y="104" text-anchor="middle" style="fill:var(--muted);font-size:12px;letter-spacing:.06em">ANO t + 1</text>
+          <text x="810" y="104" text-anchor="middle" style="fill:var(--muted);font-size:12px;letter-spacing:.06em">ANO t + 2</text>
           <line x1="247" y1="151" x2="389" y2="246" style="stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:5 4" marker-end="url(#esq-seta)"></line>
           <line x1="247" y1="349" x2="389" y2="254" style="stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:5 4" marker-end="url(#esq-seta)"></line>
           <circle cx="395" cy="250" r="4" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.5"></circle>
@@ -298,6 +299,9 @@ body { margin: 0; }
           <circle cx="560" cy="140" r="20" style="fill:var(--a-rej);stroke:var(--a-rej);stroke-width:2.4"></circle><text x="560" y="145" text-anchor="middle" style="fill:var(--on-strong);font-size:15px;font-style:italic">z</text>
           <text x="594" y="138" style="fill:var(--ink);font-size:13px;font-weight:600"><tspan font-style="italic">φ</tspan> · persiste</text>
           <text x="594" y="154" style="fill:var(--ink-2);font-size:11.5px">estava e continua</text>
+          <text x="714" y="145" style="fill:var(--muted);font-size:16px;letter-spacing:2px">…</text>
+          <line x1="738" y1="140" x2="782" y2="140" style="stroke:var(--muted);stroke-width:1.4" marker-end="url(#esq-seta-m)"></line>
+          <g opacity="0.5"><circle cx="810" cy="140" r="20" style="fill:var(--a-rej);stroke:var(--a-rej);stroke-width:2.4"></circle><text x="810" y="145" text-anchor="middle" style="fill:var(--on-strong);font-size:15px;font-style:italic">z</text></g>
           <line x1="230" y1="161" x2="230" y2="168" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="216" y="170" width="12" height="12" rx="2" style="fill:var(--a-rej)"></rect><rect x="232" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><text x="210" y="180" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <line x1="560" y1="161" x2="560" y2="168" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="546" y="170" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="562" y="170" width="12" height="12" rx="2" style="fill:var(--a-rej)"></rect><text x="540" y="180" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <text x="16" y="248" style="fill:var(--ink);font-size:14px;font-weight:600">Natural</text>
@@ -310,6 +314,9 @@ body { margin: 0; }
           <circle cx="560" cy="250" r="20" style="fill:var(--a-nat);stroke:var(--a-nat);stroke-width:2.4"></circle><text x="560" y="255" text-anchor="middle" style="fill:var(--on-strong);font-size:15px;font-style:italic">z</text>
           <text x="594" y="248" style="fill:var(--ink);font-size:13px;font-weight:600"><tspan font-style="italic">γ</tspan> · coloniza</text>
           <text x="594" y="264" style="fill:var(--ink-2);font-size:11.5px">não estava e chega</text>
+          <text x="714" y="255" style="fill:var(--muted);font-size:16px;letter-spacing:2px">…</text>
+          <line x1="738" y1="250" x2="782" y2="250" style="stroke:var(--muted);stroke-width:1.4" marker-end="url(#esq-seta-m)"></line>
+          <g opacity="0.5"><circle cx="810" cy="250" r="20" style="fill:var(--a-nat);stroke:var(--a-nat);stroke-width:2.4"></circle><text x="810" y="255" text-anchor="middle" style="fill:var(--on-strong);font-size:15px;font-style:italic">z</text></g>
           <line x1="230" y1="271" x2="230" y2="278" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="216" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="232" y="280" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><text x="210" y="290" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <line x1="560" y1="271" x2="560" y2="278" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="546" y="280" width="12" height="12" rx="2" style="fill:var(--a-nat)"></rect><rect x="562" y="280" width="12" height="12" rx="2" style="fill:var(--a-nat)"></rect><text x="540" y="290" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <text x="16" y="358" style="fill:var(--ink);font-size:14px;font-weight:600">Plantio</text>
@@ -322,6 +329,9 @@ body { margin: 0; }
           <circle cx="560" cy="360" r="20" style="fill:var(--surface);stroke:var(--a-pla);stroke-width:2.4"></circle><text x="560" y="365" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text>
           <text x="594" y="358" style="fill:var(--ink);font-size:13px;font-weight:600"><tspan font-style="italic">1 − φ</tspan> · extinção</text>
           <text x="594" y="374" style="fill:var(--ink-2);font-size:11.5px">estava e sai</text>
+          <text x="714" y="365" style="fill:var(--muted);font-size:16px;letter-spacing:2px">…</text>
+          <line x1="738" y1="360" x2="782" y2="360" style="stroke:var(--muted);stroke-width:1.4" marker-end="url(#esq-seta-m)"></line>
+          <g opacity="0.5"><circle cx="810" cy="360" r="20" style="fill:var(--surface);stroke:var(--a-pla);stroke-width:2.4"></circle><text x="810" y="365" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-style:italic">z</text></g>
           <line x1="230" y1="381" x2="230" y2="388" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="216" y="390" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="232" y="390" width="12" height="12" rx="2" style="fill:var(--a-pla)"></rect><text x="210" y="400" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
           <line x1="560" y1="381" x2="560" y2="388" style="stroke:var(--ink-2);stroke-width:1.2"></line><rect x="546" y="390" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><rect x="562" y="390" width="12" height="12" rx="2" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2"></rect><text x="540" y="400" text-anchor="end" style="fill:var(--ink-2);font-size:13px;font-style:italic">p</text>
         </svg>
