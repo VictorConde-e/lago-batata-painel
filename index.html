@@ -415,9 +415,11 @@ body { margin: 0; }
       </div>
 
       <div class="bloco-eq">
-        <span class="eyebrow">4 · Um coeficiente por área, sem perder força</span>
+        <span class="eyebrow">4 · Coeficiente por área com <i>partial pooling</i></span>
         <div class="eq"><span class="t"><i>β</i><sub>k,a</sub> = <i>β</i><sub>k</sub> + <i>τ</i>·<i>δ</i><sub>k,a</sub></span><span class="t">,&nbsp; com &nbsp;<i>δ</i><sub>k,Natural</sub> + <i>δ</i><sub>k,Rejeito</sub> + <i>δ</i><sub>k,Plantio</sub> = 0</span></div>
-        <p class="palavras"><i>β</i><sub>k</sub> é o efeito médio do fator nas três áreas e <i>δ</i> é o quanto cada área se afasta dele. Um único <i>τ</i> controla o tamanho desses afastamentos: se as áreas não diferem, <i>τ</i> fica perto de zero e os três coeficientes se juntam num só. Isso se chama <i>partial pooling</i>: cada área usa a informação das outras, o que importa para o Plantio, com só 12 anos de coleta.</p>
+        <p class="palavras">Esta equação testa se o peso de um fator muda entre as áreas (segunda parte da H3). Ela vale para os quatro fatores com coeficiente por área: abundância, paisagem, posição e amplitude de nicho.</p>
+        <p class="palavras">Em vez de estimar três coeficientes independentes, o modelo estima o efeito médio do fator nas três áreas (<i>β</i><sub>k</sub>) e o quanto cada área se afasta dele (<i>δ</i><sub>k,a</sub>). Os afastamentos somam zero, então <i>β</i><sub>k</sub> continua sendo a média. Um único <i>τ</i> define o tamanho dos afastamentos: se as áreas não diferem, <i>τ</i> fica perto de zero e os três coeficientes ficam praticamente iguais; se diferem, <i>τ</i> cresce e cada área fica com o seu.</p>
+        <p class="palavras">Como os três coeficientes são estimados juntos, a área com menos dados se apoia nas outras: o coeficiente do Plantio, com 12 anos de coleta, é puxado em direção à média em vez de oscilar com poucos dados. Uma diferença entre áreas só aparece quando os dados a sustentam.</p>
       </div>
 
       <div class="bloco-eq">
