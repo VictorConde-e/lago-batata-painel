@@ -368,8 +368,8 @@ body { margin: 0; }
     <div class="card">
       <h3 style="margin-bottom:4px">Do dado ao resultado, em cinco passos</h3>
       <ol class="tempo">
-        <li><div><h3>As capturas viram uns e zeros</h3>
-          <p>Para cada espécie, área, ano e visita (campanha × área × vistoria): 1 se a espécie caiu na rede, 0 se não caiu. Anos sem coleta ficam em branco, não como zero.</p></div></li>
+        <li><div><h3>As capturas viram presença ou ausência</h3>
+          <p>Para cada espécie, área, ano e visita (campanha × área × vistoria): 1 se a espécie caiu na rede, 0 se não caiu. Anos sem coleta ficam como NA.</p></div></li>
         <li><div><h3>O modelo aprende a chance de captura (p)</h3>
           <p>Quando uma espécie aparece em uma de duas visitas do mesmo ano, ela estava lá na outra visita e escapou. Com milhares de casos assim, o modelo mede com que frequência uma espécie presente escapa, e como isso muda com o esforço, a abundância e o ano.</p></div></li>
         <li><div><h3>O modelo aprende a chance de persistir e de colonizar (φ e γ)</h3>
@@ -451,14 +451,15 @@ body { margin: 0; }
       </div>
 
       <div class="bloco-eq">
-        <span class="eyebrow">7 · A medida da tese</span>
+        <span class="eyebrow">7 · Persistência temporal</span>
         <div class="eq"><span class="t">persistência<sub>s,a</sub> = média, nos anos com coleta, de P(<i>z</i><sub>s,a,t</sub> = 1 | todas as capturas)</span><span class="t">; &nbsp;persistente se ≥ 0,5</span></div>
         <p class="palavras">É a mesma medida da qualificação, a fração dos anos em que a espécie está, calculada com a presença estimada em vez da captura. A <b>persistência simples</b> do modelo antigo é anos com captura ÷ anos amostrados, que é sempre menor ou igual.</p>
       </div>
     </div>
 
 
-    <div class="card leitura" id="como-ler">
+    <!-- como ler os resultados: oculto (para mostrar de novo, tire o atributo hidden) -->
+    <div class="card leitura" id="como-ler" hidden>
       <h3>Como ler os resultados</h3>
       <p>Quase todos os gráficos das outras abas seguem este formato.</p>
       <div class="diagrama" aria-label="Exemplo anotado de um gráfico de coeficientes">
@@ -487,7 +488,7 @@ body { margin: 0; }
     </div>
 
     <div class="card leitura">
-      <h3>O modelo antigo e o novo, lado a lado</h3>
+      <h3>Modelo antigo × Modelo novo</h3>
       <div class="scroll-x"><table class="quadro">
         <thead><tr><th></th><th>Modelo antigo (qualificação)</th><th>Modelo novo (ocupação dinâmica)</th></tr></thead>
         <tbody>
